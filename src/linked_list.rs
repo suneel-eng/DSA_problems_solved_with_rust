@@ -41,3 +41,18 @@ pub fn vector_to_linked_list(items: Vec<u8>) -> Option<Box<ListNode>> {
 
     head
 }
+
+pub fn print_linked_list(head: Option<Box<ListNode>>) -> Vec<u8> {
+    let mut items: Vec<u8> = Vec::new();
+
+    let mut temp = head;
+
+    while temp.is_some() {
+
+        items.push(temp.as_ref().unwrap().data);
+
+        temp = temp.unwrap().next;
+    }
+
+    items
+}
