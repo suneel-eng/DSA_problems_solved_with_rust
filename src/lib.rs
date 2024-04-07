@@ -126,4 +126,31 @@ mod tests {
 
         assert_eq!(result, vec![ 1, 2, 3, 4, 5 ]);
     }
+
+    #[test]
+    fn test_insert_in_linked_list() {
+        let linked_list_head = linked_list::vector_to_linked_list(vec![ 1, 2, 4, 5 ]);
+
+        let result = linked_list::insert_in_linked_list(linked_list_head, 3, 2);
+
+        assert_eq!(result, linked_list::vector_to_linked_list(vec![ 1, 2, 3, 4, 5 ]));
+    }
+
+    #[test]
+    fn test_delete_in_linked_list() {
+        let linked_list_head = linked_list::vector_to_linked_list(vec![ 1, 2, 3, 4, 5 ]);
+
+        let result = linked_list::delete_in_linked_list(linked_list_head, 2);
+
+        assert_eq!(result, linked_list::vector_to_linked_list(vec![ 1, 2, 4, 5 ]));
+    }
+
+    #[test]
+    fn test_element_in_linked_list() {
+        let linked_list_head = linked_list::vector_to_linked_list(vec![ 1, 2, 3, 4, 5 ]);
+
+        let result = linked_list::element_in_linked_list(linked_list_head, 2);
+
+        assert_eq!(result, 3);
+    }
 }
