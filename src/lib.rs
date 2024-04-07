@@ -1,6 +1,7 @@
 mod number;
 mod array;
 mod linked_list;
+mod tree;
 
 #[cfg(test)]
 mod tests {
@@ -152,5 +153,169 @@ mod tests {
         let result = linked_list::element_in_linked_list(linked_list_head, 2);
 
         assert_eq!(result, 3);
+    }
+
+    use crate::tree::{self, TreeNode};
+
+    #[test]
+    fn test_inorder_traversal() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::inorder_traversal(tree_root);
+
+        assert_eq!(result, vec![ 1, 3, 2 ]);
+    }
+
+    #[test]
+    fn test_preorder_traversal() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::preorder_traversal(tree_root);
+
+        assert_eq!(result, vec![ 1, 2, 3 ]);
+    }
+
+    #[test]
+    fn test_postorder_traversal() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::postorder_traversal(tree_root);
+
+        assert_eq!(result, vec![ 3, 2, 1 ]);
+    }
+
+    #[test]
+    fn test_size_of_tree() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::size_of_tree(tree_root);
+
+        assert_eq!(result, 3);
+    }
+
+    #[test]
+    fn test_sum_of_nodes() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::sum_of_nodes(tree_root);
+
+        assert_eq!(result, 6);
+    }
+
+    #[test]
+    fn test_height_of_tree() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 1,
+                left: Option::None,
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 2,
+                        right: Option::None,
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 3,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::height_of_tree(tree_root);
+
+        assert_eq!(result, 2);
     }
 }
