@@ -178,3 +178,66 @@ pub fn height_of_tree(tree_root: Option<Box<TreeNode>>) -> i64 {
 
     height
 }
+
+pub fn count_max_nodes(tree_root: Option<Box<TreeNode>>) -> u64 {
+
+    fn travel(node: &Option<Box<TreeNode>>, target: &mut u8, count_nodes: &mut u64) {
+
+        if node.is_none() {
+            return ();
+        }
+        
+        if let Some(node_box) = node {
+            if node_box.data >= *target {
+                *count_nodes += 1;
+                *target = node_box.data.clone();
+            }
+        }
+
+        let node_ref = node.as_ref().unwrap();
+
+        travel(&node_ref.left, target, count_nodes);
+        *target = node_ref.data.clone();
+        travel(&node_ref.right, target, count_nodes);
+        *target = node_ref.data.clone();
+    }
+
+    let mut count_nodes: u64 = 0;
+
+    let mut target: u8 = 0;
+
+    travel(&tree_root, &mut target, &mut count_nodes);
+
+    count_nodes
+
+}
+
+pub fn print_leaf_nodes(tree_root: Option<Box<TreeNode>>) -> Vec<u8> {
+
+    fn travel(node: &Option<Box<TreeNode>>, leaf_nodes: &mut Vec<u8>) {
+
+        if let Some(node_box) = node {
+            if node_box.left.is_none() && node_box.right.is_none() {
+                leaf_nodes.push(node_box.data);
+                return;
+            }
+        }
+
+        let node_ref = node.as_ref().unwrap();
+
+        if node_ref.left.is_some() {
+            travel(&node_ref.left, leaf_nodes);
+        }
+
+        if node_ref.right.is_some() {
+            travel(&node_ref.right, leaf_nodes);
+        }
+    }
+
+    let mut leaf_nodes: Vec<u8> = Vec::new();
+
+    travel(&tree_root, &mut leaf_nodes);
+
+    leaf_nodes
+
+}

@@ -318,4 +318,102 @@ mod tests {
 
         assert_eq!(result, 2);
     }
+
+    #[test]
+    fn test_count_max_nodes() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 5,
+                left: Option::Some(Box::new(TreeNode {
+                    data: 8,
+                    left: Option::Some(Box::new(TreeNode {
+                        data: 4,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                    right: Option::Some(Box::new(TreeNode {
+                        data: 9,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                })),
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 8,
+                        right: Option::Some(Box::new(
+                            TreeNode {
+                                data: 22,
+                                left: Option::Some(Box::new(TreeNode {
+                                    data: 6,
+                                    left: Option::None,
+                                    right: Option::None
+                                })),
+                                right: Option::None
+                            }
+                        )),
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 10,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::count_max_nodes(tree_root);
+
+        assert_eq!(result, 6);
+    }
+
+    #[test]
+    fn test_print_leaf_nodes() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 5,
+                left: Option::Some(Box::new(TreeNode {
+                    data: 8,
+                    left: Option::Some(Box::new(TreeNode {
+                        data: 4,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                    right: Option::Some(Box::new(TreeNode {
+                        data: 9,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                })),
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 8,
+                        right: Option::Some(Box::new(
+                            TreeNode {
+                                data: 22,
+                                left: Option::Some(Box::new(TreeNode {
+                                    data: 6,
+                                    left: Option::None,
+                                    right: Option::None
+                                })),
+                                right: Option::None
+                            }
+                        )),
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 10,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::print_leaf_nodes(tree_root);
+
+        assert_eq!(result, vec![ 4, 9, 10, 6 ]);
+    }
 }
