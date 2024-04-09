@@ -416,4 +416,80 @@ mod tests {
 
         assert_eq!(result, vec![ 4, 9, 10, 6 ]);
     }
+
+    #[test]
+    fn test_sum_of_left_leaf_nodes() {
+        let tree_root = Option::Some(Box::new(
+            TreeNode {
+                data: 5,
+                left: Option::Some(Box::new(TreeNode {
+                    data: 8,
+                    left: Option::Some(Box::new(TreeNode {
+                        data: 4,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                    right: Option::Some(Box::new(TreeNode {
+                        data: 9,
+                        left: Option::None,
+                        right: Option::None
+                    })),
+                })),
+                right: Option::Some(Box::new(
+                    TreeNode {
+                        data: 8,
+                        right: Option::Some(Box::new(
+                            TreeNode {
+                                data: 22,
+                                left: Option::Some(Box::new(TreeNode {
+                                    data: 6,
+                                    left: Option::None,
+                                    right: Option::None
+                                })),
+                                right: Option::None
+                            }
+                        )),
+                        left: Option::Some(Box::new(
+                            TreeNode {
+                                data: 10,
+                                left: Option::None,
+                                right: Option::None
+                            }
+                        ))
+                    }
+                ))
+            }
+        ));
+
+        let result = tree::sum_of_left_leaf_nodes(tree_root);
+
+        assert_eq!(result, 20);
+    }
+
+    #[test]
+    fn test_sub_arrays() {
+        let result = array::possible_sub_arrays(vec![ 1, 2, 3, 4, 5 ]);
+
+        assert_eq!(result, vec![
+            vec![1],
+            vec![1, 2],
+            vec![1, 2, 3],
+            vec![1, 2, 3, 4],
+            vec![1, 2, 3, 4, 5],
+            vec![2],
+            vec![2, 3],
+            vec![2, 3, 4],
+            vec![2, 3, 4, 5],
+            vec![3],
+            vec![3, 4],
+            vec![3, 4, 5],
+            vec![4],
+            vec![4, 5],
+            vec![5]
+            ]);
+
+            let result_length = result.len();
+            let input_length: usize = 5;
+            assert_eq!(result_length, ((input_length * input_length) + input_length)/2);
+    }
 }

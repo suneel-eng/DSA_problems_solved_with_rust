@@ -82,3 +82,22 @@ pub fn reverse_in_range(a: Vec<u64>, b: usize, c: usize) -> Vec<u64> {
 
     a
 }
+
+pub fn possible_sub_arrays(array: Vec<u8>) -> Vec<Vec<u8>> {
+    
+    let mut sub_arrays: Vec<Vec<u8>> = Vec::new();
+
+    for i in 0..array.len() {
+
+        let mut sub_array: Vec<u8> = Vec::new();
+
+       for j in i..array.len() {
+
+            sub_array.push(array[j]);
+
+            sub_arrays.push(sub_array.clone());
+       }
+    }
+
+    sub_arrays
+}

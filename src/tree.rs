@@ -241,3 +241,36 @@ pub fn print_leaf_nodes(tree_root: Option<Box<TreeNode>>) -> Vec<u8> {
     leaf_nodes
 
 }
+
+pub fn sum_of_left_leaf_nodes(tree_root: Option<Box<TreeNode>>) -> u64 {
+
+    fn travel(node: &Option<Box<TreeNode>>, leaf_nodes_sum: &mut u64, node_type: &str) {
+
+        if let Some(node_box) = node {
+            if node_box.left.is_none() && node_box.right.is_none() {
+                if node_type == "LEFT" {
+                    *leaf_nodes_sum += node_box.data as u64;
+                }
+            }
+        } else {
+            return ();
+        }
+
+        let node_ref = node.as_ref().unwrap();
+
+        if node_ref.left.is_some() {
+            travel(&node_ref.left, leaf_nodes_sum, "LEFT");
+        }
+
+        if node_ref.right.is_some() {
+            travel(&node_ref.right, leaf_nodes_sum, "RIGHT");
+        }
+    }
+
+    let mut leaf_nodes_sum: u64 = 0;
+
+    travel(&tree_root, &mut leaf_nodes_sum, "ROOT");
+
+    leaf_nodes_sum
+
+}
