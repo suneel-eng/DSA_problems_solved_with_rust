@@ -2,6 +2,7 @@ mod number;
 mod array;
 mod linked_list;
 mod tree;
+mod matrix_2d;
 
 #[cfg(test)]
 mod tests {
